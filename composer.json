@@ -1,0 +1,10 @@
+{
+    "name": "kan/nk-opendata",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kan\\NkOpendata\\": "src/"
+        }
+    },
+    "require": {}
+}
