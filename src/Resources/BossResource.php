@@ -5,10 +5,11 @@ namespace Kan\NkOpendata\Resources;
 use Kan\NkOpendata\DTO\BossEvent;
 use Kan\NkOpendata\Http\HttpClient;
 use Kan\NkOpendata\Resources\BossLeaderboardResource;
+use Kan\NkOpendata\Resources\Concerns\RequiresId;
 
 class BossResource extends Resource
 {
-    protected ?string $id = null;
+    use RequiresId;
 
     public function __construct(HttpClient $http, ?string $id = null)
     {
@@ -30,11 +31,5 @@ class BossResource extends Resource
         $this->requireId();
 
         return new BossLeaderboardResource($this->http, $this->id);
-    }
-
-    protected function requireId(): void {
-        if (!$this->id) {
-            throw new \LogicException('Boss id required');
-        }
     }
 }

@@ -26,11 +26,11 @@ class Hydrator
                 $name = $attributes[0]->newInstance()->field;
             }
 
-            if (!array_key_exists($name, $data)) {
+            if (!array_key_exists($name, $data) and (! $param->isOptional() or ! $param->isDefaultValueAvailable())) {
                 throw new \InvalidArgumentException("Missing field: $name");
             }
 
-            $value = $data[$name];
+            $value = $data[$name] ?? null;
 
             $args[] = self::cast($param, $value);
         }

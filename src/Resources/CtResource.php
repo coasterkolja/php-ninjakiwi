@@ -7,9 +7,10 @@ use Kan\NkOpendata\DTO\Tile;
 use Kan\NkOpendata\Exceptions\ApiException;
 use Kan\NkOpendata\Http\HttpClient;
 use Kan\NkOpendata\Hydrator\Hydrator;
+use Kan\NkOpendata\Resources\Concerns\RequiresId;
 
 class CtResource extends Resource {
-    protected ?string $id = null;
+    use RequiresId;
 
     public function __construct(HttpClient $http, ?string $id = null)
     {
@@ -58,12 +59,5 @@ class CtResource extends Resource {
         $this->requireId();
 
         return new CtLeaderboardResource($this->http, $this->id);
-    }
-
-    private function requireId(): void
-    {
-        if (!$this->id) {
-            throw new \LogicException('CT id required');
-        }
     }
 }

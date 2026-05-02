@@ -5,6 +5,9 @@ namespace Kan\NkOpendata;
 use Kan\NkOpendata\Http\HttpClient;
 use Kan\NkOpendata\Resources\BossResource;
 use Kan\NkOpendata\Resources\CtResource;
+use Kan\NkOpendata\Resources\GuildResource;
+use Kan\NkOpendata\Resources\RaceResource;
+use Kan\NkOpendata\Resources\UserResource;
 
 class Client
 {
@@ -20,8 +23,21 @@ class Client
         return new CtResource($this->http, $id);
     }
 
-    public function boss(?string $id = null): BossResource
+    public function bosses(?string $id = null): BossResource
     {
         return new BossResource($this->http, $id);
+    }
+
+    public function races(?string $id = null): RaceResource
+    {
+        return new RaceResource($this->http, $id);
+    }
+
+    public function users(): UserResource {
+        return new UserResource($this->http);
+    }
+
+    public function guild(): GuildResource {
+        return new GuildResource($this->http);
     }
 }
