@@ -6,5 +6,7 @@
             "Kan\\NkOpendata\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.10"
+    }
 }
