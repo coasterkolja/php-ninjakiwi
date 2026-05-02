@@ -3,6 +3,7 @@
 namespace Kan\NkOpendata;
 
 use Kan\NkOpendata\Http\HttpClient;
+use Kan\NkOpendata\Resources\BossResource;
 use Kan\NkOpendata\Resources\CtResource;
 
 class Client
@@ -17,5 +18,10 @@ class Client
     public function ct(?string $id = null): CtResource
     {
         return new CtResource($this->http, $id);
+    }
+
+    public function boss(?string $id = null): BossResource
+    {
+        return new BossResource($this->http, $id);
     }
 }

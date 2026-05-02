@@ -2,6 +2,7 @@
 
 namespace Kan\NkOpendata\Hydrator;
 
+use Kan\NkOpendata\Collections\Collection;
 use Kan\NkOpendata\Hydrator\Attributes\CastWith;
 use Kan\NkOpendata\Hydrator\Attributes\MapFrom;
 
@@ -73,6 +74,11 @@ class Hydrator
             return self::castEnum($typeName, $value);
         }
 
+        // Collection
+        if (is_subclass_of($typeName, Collection::class)) {
+            return self::castCollection($typeName, $value);
+        }
+
         // Nested DTO
         if (class_exists($typeName)) {
             return self::hydrate($typeName, $value);
@@ -93,5 +99,9 @@ class Hydrator
         }
 
         throw new \UnexpectedValueException("Non-backed enums are not supported for hydration");
+    }
+
+    private static function castCollection(string $collectionClass, array $value): Collection {
+        return new $collectionClass($value);
     }
 }
