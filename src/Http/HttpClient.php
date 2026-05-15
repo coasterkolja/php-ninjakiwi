@@ -16,6 +16,9 @@ class HttpClient
         ]);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function get(string $uri): array {
         try {
             $response = $this->client->get($uri);
@@ -23,12 +26,14 @@ class HttpClient
             throw new ApiException($e->getMessage(), $e->getCode());
         }
 
+        /** @var mixed $data */
         $data = json_decode($response->getBody()->getContents(), true);
 
-        if (!($data['success'] ?? false)) {
+        if (!is_array($data) || !($data['success'] ?? false)) {
             throw new ApiException('Api call failed');
         }
 
+        /** @var array<string, mixed> $data */
         return $data;
     }
 }

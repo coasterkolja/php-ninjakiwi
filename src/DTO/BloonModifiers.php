@@ -8,6 +8,8 @@ class BloonModifiers implements DTOInterface {
         public float $moabSpeedMultiplier,
         public float $bossSpeedMultiplier,
         public float $regrowRateMultiplier,
+
+        /** @var array<int, float> */
         public array $healthMultipliers,
         public bool $allCamo,
         public bool $allRegen

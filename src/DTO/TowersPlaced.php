@@ -34,9 +34,9 @@ class TowersPlaced implements DTOInterface
         public int $Desperado
     ) {}
 
-    public function get(Tower $hero): int
+    public function get(Tower $tower): int
     {
-        return match ($hero) {
+        return match ($tower) {
             Tower::DartMonkey => $this->DartMonkey,
             Tower::BombShooter => $this->BombShooter,
             Tower::NinjaMonkey => $this->NinjaMonkey,
@@ -61,7 +61,8 @@ class TowersPlaced implements DTOInterface
             Tower::IceMonkey => $this->IceMonkey,
             Tower::SniperMonkey => $this->SniperMonkey,
             Tower::Mermonkey => $this->Mermonkey,
-            Tower::Desperado => $this->Desperado
+            Tower::Desperado => $this->Desperado,
+            default => throw new \InvalidArgumentException("Tower {$tower->value} is not a tower"),
         };
     }
 }

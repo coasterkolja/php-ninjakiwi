@@ -25,9 +25,9 @@ class HeroesPlaced implements DTOInterface
         public int $Rosalia,
     ) {}
 
-    public function get(Tower $hero): int
+    public function get(Tower $tower): int
     {
-        return match ($hero) {
+        return match ($tower) {
             Tower::AdmiralBrickell => $this->AdmiralBrickell,
             Tower::Adora => $this->Adora,
             Tower::Benjamin => $this->Benjamin,
@@ -44,6 +44,7 @@ class HeroesPlaced implements DTOInterface
             Tower::CaptainChurchill => $this->CaptainChurchill,
             Tower::Corvus => $this->Corvus,
             Tower::Rosalia => $this->Rosalia,
+            default => throw new \InvalidArgumentException("Tower {$tower->value} is not a hero"),
         };
     }
 }

@@ -4,7 +4,7 @@ namespace Kan\NkOpendata\DTO;
 
 use Kan\NkOpendata\Hydrator\Attributes\MapFrom;
 
-class CtLeaderboardGroup {
+class CtLeaderboardGroup implements DTOInterface {
     public function __construct(
         #[MapFrom('displayName')]
         public string $name,

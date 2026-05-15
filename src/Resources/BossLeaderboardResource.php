@@ -12,7 +12,7 @@ class BossLeaderboardResource extends Resource {
     public function __construct(HttpClient $http, string $id)
     {
         $this->id = $id;
-        return parent::__construct($http);
+        parent::__construct($http);
     }
 
     public function mode(string $mode): self {
@@ -29,6 +29,7 @@ class BossLeaderboardResource extends Resource {
         return $this->mode("standard");
     }
 
+    /** @return array<int, BossLeaderboard> */
     public function team(int $teamSize = 2): array {
         if ($teamSize < 1 || $teamSize > 4) {
             throw new \InvalidArgumentException("Team size must be between 1 and 4");
@@ -40,6 +41,7 @@ class BossLeaderboardResource extends Resource {
         );
     }
 
+    /** @return array<int, BossLeaderboard> */
     public function singleplayer(): array {
         return $this->team(1);
     }

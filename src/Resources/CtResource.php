@@ -15,9 +15,10 @@ class CtResource extends Resource {
     public function __construct(HttpClient $http, ?string $id = null)
     {
         $this->id = $id;
-        return parent::__construct($http);
+        parent::__construct($http);
     }
 
+    /** @return array<int, CtEvent> */
     public function list(): array {
         return $this->map('ct', CtEvent::class);
     }
@@ -27,30 +28,33 @@ class CtResource extends Resource {
     }
 
     public function current(): CtEvent {
-        $event = $this->recent();
+        $events = $this->list();
+        $event = $events[0];
 
         if ($event->end->getTimestamp() < time()) {
             throw new ApiException('No currently active event');
         }
 
-        return $this->list()[0];
+        return $event;
     }
 
     public function find(string $id): self {
         return new self($this->http, $id);
-    
-        // return array_find($this->list(), function (CtEvent $event) use ($id) {
-        //     return $event->id === $id;
-        // });
     }
 
+    /** @return array<int, Tile> */
     public function tiles(): array
     {
         $this->requireId();
 
         return $this->transform(
             "ct/{$this->id}/tiles",
-            fn($body) => Hydrator::hydrateCollection(Tile::class, $body['tiles'])
+            function (array $body): array {
+                /** @var array<int, array<string, mixed>> $tiles */
+                $tiles = $body['tiles'];
+
+                return Hydrator::hydrateCollection(Tile::class, $tiles);
+            }
         );
     }
 
@@ -58,6 +62,9 @@ class CtResource extends Resource {
     {
         $this->requireId();
 
-        return new CtLeaderboardResource($this->http, $this->id);
+        /** @var string $id */
+        $id = $this->id;
+
+        return new CtLeaderboardResource($this->http, $id);
     }
 }

@@ -17,6 +17,7 @@ class CtLeaderboardResource extends Resource
         parent::__construct($http);
     }
 
+    /** @return array<int, CtLeaderboardPlayer> */
     public function player(): array
     {
         return $this->map(
@@ -25,6 +26,7 @@ class CtLeaderboardResource extends Resource
         );
     }
 
+    /** @return array<int, CtLeaderboardTeam> */
     public function team(): array
     {
         return $this->map(
@@ -33,6 +35,7 @@ class CtLeaderboardResource extends Resource
         );
     }
 
+    /** @return array<int, CtLeaderboardGroup> */
     public function group(string $groupId): array
     {
         return $this->map(

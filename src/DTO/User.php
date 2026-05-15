@@ -31,28 +31,41 @@ class User implements DTOInterface {
         public Gameplay $gameplay,
         public HeroesPlaced $heroesPlaced,
         public TowersPlaced $towersPlaced,
+
+        /** @var array<string, mixed> */
         public array $stats,
+
+        /** @var array<string, mixed> */
         public array $bossBadgesNormal,
+
+        /** @var array<string, mixed> */
         public array $bossBadgesElite,
         
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsSinglePlayer')]
         public array $medalsSingleplayer,
 
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsMultiplayer')]
         public array $medalsMultiplayer,
 
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsBoss')]
         public array $medalsBossNormal,
 
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsBossElite')]
         public array $medalsTeamElite,
 
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsCTLocal')]
         public array $medalsCtLocal,
 
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsCTGlobal')]
         public array $medalsCtGlobal,
 
+        /** @var array<string, mixed> */
         #[MapFrom('_medalsRace')]
         public array $medalsRace
     ) {}

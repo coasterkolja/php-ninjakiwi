@@ -16,10 +16,12 @@ class RaceResource extends Resource {
         parent::__construct($http);
     }
 
+    /** @return array<int, Race> */
     public function list(): array {
         return $this->map('races', Race::class);
     }
 
+    /** @return array<int, RaceLeaderboard> */
     public function leaderboard(): array {
         $this->requireId();
 

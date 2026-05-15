@@ -17,6 +17,7 @@ class BossResource extends Resource
         parent::__construct($http);
     }
 
+    /** @return array<int, BossEvent> */
     public function list(): array {
         return $this->map('bosses', BossEvent::class);
     }
@@ -24,12 +25,18 @@ class BossResource extends Resource
     public function metadata(): BossMetadataResource {
         $this->requireId();
 
-        return new BossMetadataResource($this->http, $this->id);
+        /** @var string $id */
+        $id = $this->id;
+
+        return new BossMetadataResource($this->http, $id);
     }
 
     public function leaderboard(): BossLeaderboardResource {
         $this->requireId();
 
-        return new BossLeaderboardResource($this->http, $this->id);
+        /** @var string $id */
+        $id = $this->id;
+
+        return new BossLeaderboardResource($this->http, $id);
     }
 }

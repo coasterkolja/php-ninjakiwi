@@ -8,6 +8,12 @@ use Kan\NkOpendata\Hydrator\Attributes\MapFrom;
 
 class Hydrator
 {
+    /**
+     * @template T of object
+     * @param class-string<T> $class
+     * @param array<string, mixed> $data
+     * @return T
+     */
     public static function hydrate(string $class, array $data): object {
         $reflection = new \ReflectionClass($class);
         $constructor = $reflection->getConstructor();
@@ -38,6 +44,12 @@ class Hydrator
         return $reflection->newInstanceArgs($args);
     }
 
+    /**
+     * @template T of object
+     * @param class-string<T> $class
+     * @param array<int, array<string, mixed>> $data
+     * @return array<int, T>
+     */
     public static function hydrateCollection(string $class, array $data): array {
         return array_map(
             fn($item) => self::hydrate($class, $item),
@@ -67,7 +79,11 @@ class Hydrator
 
         // DateTime
         if ($typeName === \DateTimeImmutable::class) {
-            return (new \DateTimeImmutable())->setTimestamp(floor($value / 1000));
+            if (!is_int($value) && !is_float($value)) {
+                throw new \UnexpectedValueException('Expected numeric timestamp for DateTime field');
+            }
+
+            return (new \DateTimeImmutable())->setTimestamp((int) ($value / 1000));
         }
 
         if (enum_exists($typeName)) {
@@ -76,12 +92,15 @@ class Hydrator
 
         // Collection
         if (is_subclass_of($typeName, Collection::class)) {
-            return self::castCollection($typeName, $value);
+            return self::castCollection($typeName, (array) $value);
         }
 
         // Nested DTO
         if (class_exists($typeName)) {
-            return self::hydrate($typeName, $value);
+            /** @var array<string, mixed> $data */
+            $data = (array) $value;
+
+            return self::hydrate($typeName, $data);
         }
 
         return $value;
@@ -94,6 +113,10 @@ class Hydrator
 
         // backed enums (string/int)
         if (is_subclass_of($enumClass, \BackedEnum::class)) {
+            if (!is_string($value) && !is_int($value)) {
+                throw new \UnexpectedValueException('Expected string or int for enum value');
+            }
+
             return $enumClass::tryFrom($value)
                 ?? throw new \UnexpectedValueException("Invalid enum value: $value");
         }
@@ -101,7 +124,16 @@ class Hydrator
         throw new \UnexpectedValueException("Non-backed enums are not supported for hydration");
     }
 
+    /**
+     * @template T of Collection
+     * @param class-string<T> $collectionClass
+     * @param array<mixed> $value
+     * @return T
+     */
     private static function castCollection(string $collectionClass, array $value): Collection {
-        return new $collectionClass($value);
+        /** @var T $result */
+        $result = new $collectionClass($value);
+
+        return $result;
     }
 }
