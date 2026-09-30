@@ -23,6 +23,7 @@ enum Tower: string {
     case Corvus = 'Corvus';
     case Rosalia = 'Rosalia';
     case Silas = 'Silas';
+    case DanDMonke = 'DanDMonke';
     
     // PRIMARY
     case DartMonkey = 'DartMonkey';
