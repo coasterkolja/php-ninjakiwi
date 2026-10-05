@@ -7,7 +7,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use Kan\NkOpendata\Client;
 use Kan\NkOpendata\DTO\Tile;
-use Kan\NkOpendata\Enums\TileGameType;
+use Kan\NkOpendata\Enums\GameType;
 use Kan\NkOpendata\Exceptions\ApiException;
 
 $client = new Client();
@@ -65,7 +65,7 @@ foreach ($counts as $mode => $count) {
 
 printf("\nBoss tiles:\n");
 
-$bosses = array_filter($tiles, static fn (Tile $t): bool => $t->gameType === TileGameType::Boss);
+$bosses = array_filter($tiles, static fn (Tile $t): bool => $t->gameType === GameType::Boss);
 printf("  %s\n", $bosses === [] ? 'none' : implode(', ', array_map(
     static fn (Tile $t): string => $t->id,
     $bosses,

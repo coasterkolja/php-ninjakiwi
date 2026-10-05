@@ -2,4 +2,14 @@
 
 namespace Kan\NkOpendata\Exceptions;
 
-class ApiException extends \Exception {}
+class ApiException extends \Exception
+{
+  public function __construct(
+    string $message,
+    int $code = 0,
+    ?\Throwable $previous = null
+  ) {
+    parent::__construct($message, $code, $previous);
+  }
+}
+

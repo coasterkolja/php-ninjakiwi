@@ -6,4 +6,4 @@ require __DIR__ . '/vendor/autoload.php';
 
 $client = new Client();
 
-print_r($client->ct()->recent());
+dd($client->bosses()->recent());

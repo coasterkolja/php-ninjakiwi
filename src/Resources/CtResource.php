@@ -8,9 +8,10 @@ use Kan\NkOpendata\Exceptions\ApiException;
 use Kan\NkOpendata\Http\HttpClient;
 use Kan\NkOpendata\Hydrator\Hydrator;
 use Kan\NkOpendata\Resources\Concerns\RequiresId;
+use Kan\NkOpendata\Resources\Concerns\IsEvent;
 
 class CtResource extends Resource {
-    use RequiresId;
+    use RequiresId, IsEvent;
 
     public function __construct(HttpClient $http, ?string $id = null)
     {
@@ -21,21 +22,6 @@ class CtResource extends Resource {
     /** @return array<int, CtEvent> */
     public function list(): array {
         return $this->map('ct', CtEvent::class);
-    }
-
-    public function recent(): CtEvent {
-        return $this->list()[0];
-    }
-
-    public function current(): CtEvent {
-        $events = $this->list();
-        $event = $events[0];
-
-        if ($event->end->getTimestamp() < time()) {
-            throw new ApiException('No currently active event');
-        }
-
-        return $event;
     }
 
     public function find(string $id): self {

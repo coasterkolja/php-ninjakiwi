@@ -2,59 +2,62 @@
 
 namespace Kan\NkOpendata\Enums;
 
-enum Tower: string {
-    case ChosenPrimaryHero = 'ChosenPrimaryHero';
+enum Tower: string
+{
+  case Unknown = '';
+  case ChosenPrimaryHero = 'ChosenPrimaryHero';
 
     // HEROES
-    case Quincy = 'Quincy';
-    case Gwendolin = 'Gwendolin';
-    case StrikerJones = 'StrikerJones';
-    case ObynGreenfoot = 'ObynGreenfoot';
-    case CaptainChurchill = 'CaptainChurchill';
-    case Benjamin = 'Benjamin';
-    case Ezili = 'Ezili';
-    case PatFusty = 'PatFusty';
-    case Adora = 'Adora';
-    case AdmiralBrickell = 'AdmiralBrickell';
-    case Etienne = 'Etienne';
-    case Sauda = 'Sauda';
-    case Psi = 'Psi';
-    case Geraldo = 'Geraldo';
-    case Corvus = 'Corvus';
-    case Rosalia = 'Rosalia';
-    case Silas = 'Silas';
-    case DanDMonke = 'DanDMonke';
-    
+  case Quincy = 'Quincy';
+  case Gwendolin = 'Gwendolin';
+  case StrikerJones = 'StrikerJones';
+  case ObynGreenfoot = 'ObynGreenfoot';
+  case CaptainChurchill = 'CaptainChurchill';
+  case Benjamin = 'Benjamin';
+  case Ezili = 'Ezili';
+  case PatFusty = 'PatFusty';
+  case Adora = 'Adora';
+  case AdmiralBrickell = 'AdmiralBrickell';
+  case Etienne = 'Etienne';
+  case Sauda = 'Sauda';
+  case Psi = 'Psi';
+  case Geraldo = 'Geraldo';
+  case Corvus = 'Corvus';
+  case Rosalia = 'Rosalia';
+  case Silas = 'Silas';
+  case DanDMonke = 'DanDMonke';
+
     // PRIMARY
-    case DartMonkey = 'DartMonkey';
-    case BoomerangMonkey = 'BoomerangMonkey';
-    case BombShooter = 'BombShooter';
-    case TackShooter = 'TackShooter';
-    case IceMonkey = 'IceMonkey';
-    case GlueGunner = 'GlueGunner';
-    case Desperado = 'Desperado';
+  case DartMonkey = 'DartMonkey';
+  case BoomerangMonkey = 'BoomerangMonkey';
+  case BombShooter = 'BombShooter';
+  case TackShooter = 'TackShooter';
+  case IceMonkey = 'IceMonkey';
+  case GlueGunner = 'GlueGunner';
+  case Desperado = 'Desperado';
+  case Skywarden = 'Skywarden';
 
     // MILITIARY
-    case SniperMonkey = 'SniperMonkey';
-    case MonkeySub = 'MonkeySub';
-    case MonkeyBuccaneer = 'MonkeyBuccaneer';
-    case MonkeyAce = 'MonkeyAce';
-    case HeliPilot = 'HeliPilot';
-    case MortarMonkey = 'MortarMonkey';
-    case DartlingGunner = 'DartlingGunner';
-    
+  case SniperMonkey = 'SniperMonkey';
+  case MonkeySub = 'MonkeySub';
+  case MonkeyBuccaneer = 'MonkeyBuccaneer';
+  case MonkeyAce = 'MonkeyAce';
+  case HeliPilot = 'HeliPilot';
+  case MortarMonkey = 'MortarMonkey';
+  case DartlingGunner = 'DartlingGunner';
+
     // MAGIC
-    case WizardMonkey = 'WizardMonkey';
-    case SuperMonkey = 'SuperMonkey';
-    case NinjaMonkey = 'NinjaMonkey';
-    case Alchemist = 'Alchemist';
-    case Druid = 'Druid';
-    case Mermonkey = 'Mermonkey';
-    
+  case WizardMonkey = 'WizardMonkey';
+  case SuperMonkey = 'SuperMonkey';
+  case NinjaMonkey = 'NinjaMonkey';
+  case Alchemist = 'Alchemist';
+  case Druid = 'Druid';
+  case Mermonkey = 'Mermonkey';
+
     // SUPPORT
-    case BananaFarm = 'BananaFarm';
-    case SpikeFactory = 'SpikeFactory';
-    case MonkeyVillage = 'MonkeyVillage';
-    case EngineerMonkey = 'EngineerMonkey';
-    case BeastHandler = 'BeastHandler';
+  case BananaFarm = 'BananaFarm';
+  case SpikeFactory = 'SpikeFactory';
+  case MonkeyVillage = 'MonkeyVillage';
+  case EngineerMonkey = 'EngineerMonkey';
+  case BeastHandler = 'BeastHandler';
 }

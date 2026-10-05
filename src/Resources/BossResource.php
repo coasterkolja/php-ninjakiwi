@@ -6,10 +6,11 @@ use Kan\NkOpendata\DTO\BossEvent;
 use Kan\NkOpendata\Http\HttpClient;
 use Kan\NkOpendata\Resources\BossLeaderboardResource;
 use Kan\NkOpendata\Resources\Concerns\RequiresId;
+use Kan\NkOpendata\Resources\Concerns\IsEvent;
 
 class BossResource extends Resource
 {
-    use RequiresId;
+    use RequiresId, IsEvent;
 
     public function __construct(HttpClient $http, ?string $id = null)
     {

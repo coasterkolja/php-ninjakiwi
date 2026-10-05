@@ -2,12 +2,12 @@
 
 namespace Kan\NkOpendata\DTO;
 
-use Kan\NkOpendata\Enums\TileGameType;
+use Kan\NkOpendata\Enums\GameType;
 
 class Tile implements DTOInterface {
     public function __construct(
         public string $id,
         public string $type,
-        public TileGameType $gameType
+        public GameType $gameType
     ) {}
 }

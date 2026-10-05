@@ -7,7 +7,7 @@ use Kan\NkOpendata\DTO\BossEvent;
 use Kan\NkOpendata\DTO\CtEvent;
 use Kan\NkOpendata\DTO\Race;
 use Kan\NkOpendata\DTO\Tile;
-use Kan\NkOpendata\Enums\TileGameType;
+use Kan\NkOpendata\Enums\GameType;
 use Kan\NkOpendata\Hydrator\Hydrator;
 use PHPUnit\Framework\TestCase;
 
@@ -97,8 +97,8 @@ final class HydratorTest extends TestCase
 
         $this->assertInstanceOf(Tile::class, $tile);
         $this->assertSame('tile_1', $tile->id);
-        $this->assertInstanceOf(TileGameType::class, $tile->gameType);
-        $this->assertSame(TileGameType::LeastCash, $tile->gameType);
+        $this->assertInstanceOf(GameType::class, $tile->gameType);
+        $this->assertSame(GameType::LeastCash, $tile->gameType);
     }
 
     public function test_hydrate_with_nested_dto(): void

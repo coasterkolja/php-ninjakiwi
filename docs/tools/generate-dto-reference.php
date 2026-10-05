@@ -71,8 +71,8 @@ $descriptions = [
     'BossEvent::leaderboardEliteSingleplayer' => 'Absolute URL of the Elite singleplayer leaderboard.',
     'BossEvent::metadataStandard' => 'Absolute URL of the Standard challenge metadata.',
     'BossEvent::metadataElite' => 'Absolute URL of the Elite challenge metadata.',
-    'BossEvent::scoringTypeStandard' => 'Standard scoring type. Upstream values: `LeastCash`, `GameTime`, `LeastTiers`.',
-    'BossEvent::scoringTypeElite' => 'Elite scoring type. Upstream values: `LeastCash`, `GameTime`, `LeastTiers`.',
+    'BossEvent::scoringTypeStandard' => 'Standard scoring type. Upstream values: `LeastCash`, `GameType`, `LeastTiers`.',
+    'BossEvent::scoringTypeElite' => 'Elite scoring type. Upstream values: `LeastCash`, `GameType`, `LeastTiers`.',
 
     'BossLeaderboard::name' => 'Display name of the player or team.',
     'BossLeaderboard::score' => 'Combined score. For time-based scoring this is milliseconds, where lower is better.',
